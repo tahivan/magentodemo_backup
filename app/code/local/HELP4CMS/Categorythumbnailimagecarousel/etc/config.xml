@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+
+<config>
+  <modules>
+    <HELP4CMS_Categorythumbnailimagecarousel>
+      <version>0.0.1</version>
+    </HELP4CMS_Categorythumbnailimagecarousel>
+  </modules>
+  <global>
+    <models>
+      <help4cms_categorythumbnailimagecarousel>
+        <class>HELP4CMS_Categorythumbnailimagecarousel_Model</class>
+      </help4cms_categorythumbnailimagecarousel>
+    </models>
+    <blocks>
+      <categorythumbnailimagecarousel>
+        <class>HELP4CMS_categorythumbnailimagecarousel_Block</class>
+      </categorythumbnailimagecarousel>
+    </blocks>
+  </global>
+  <default>
+    <categorythumbnailimagecarousel>
+      <general>
+        <enabled>0</enabled>
+        <item>4</item>
+        <lazyload>true</lazyload>
+        <autoPlay>false</autoPlay>
+        <pauseonhover>false</pauseonhover>
+        <speed>800</speed>
+        <controls>true</controls>
+        <pagination>true</pagination>
+      </general>
+<cropgroup>
+        <crop>false</crop>
+        <aspectratio>false</aspectratio>
+        <width>400</width>
+        <height>400</height>
+</cropgroup>
+</categorythumbnailimagecarousel>
+  </default>
+  <frontend>
+    <routers>
+      <categorythumbnailimagecarousel>
+        <use>standard</use>
+        <args>
+          <module>HELP4CMS_Categorythumbnailimagecarousel</module>
+          <frontName>categorythumbnailimagecarousel</frontName>
+        </args>
+      </categorythumbnailimagecarousel>
+    </routers>
+    <layout>
+      <updates>
+        <categorythumbnailimagecarousel>
+          <file>categorythumbnailimagecarousel.xml</file>
+        </categorythumbnailimagecarousel>
+      </updates>
+    </layout>
+  </frontend>
+</config>

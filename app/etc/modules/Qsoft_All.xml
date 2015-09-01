@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Qsoft_Ajax>
+          <active>true</active>
+          <codePool>local</codePool>
+        </Qsoft_Ajax>
+        
+        <Qsoft_ExtraConfig>
+          <active>true</active>
+          <codePool>local</codePool>
+        </Qsoft_ExtraConfig>
+
+        <Qsoft_Gfont>
+          <active>true</active>
+          <codePool>local</codePool>
+        </Qsoft_Gfont>
+    
+        <Qsoft_Import>
+          <active>true</active>
+          <codePool>local</codePool>
+        </Qsoft_Import>
+        
+        <Qsoft_MultiProduct>
+          <active>true</active>
+          <codePool>local</codePool>
+        </Qsoft_MultiProduct>
+        
+        <Qsoft_Revolutionslider>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Qsoft_Revolutionslider>
+
+        <Qsoft_CategoryThumbnail>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Qsoft_CategoryThumbnail>
+    </modules>
+</config> 

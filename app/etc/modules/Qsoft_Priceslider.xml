@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <Qsoft_Priceslider>
+            <active>true</active>
+            <codePool>local</codePool>            
+        </Qsoft_Priceslider>
+    </modules>
+</config>

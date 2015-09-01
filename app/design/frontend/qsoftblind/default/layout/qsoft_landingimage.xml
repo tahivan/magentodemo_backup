@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <landing_gallery_index_index>
+        <reference name="head">
+
+            <action method="addCss">
+                <stylesheet>landing_gallery/css/magnific-popup.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>landing_gallery/css/mediaBoxes.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>landing_gallery/css/style.css</stylesheet>
+            </action>
+            <action method="removeItem"><type>skin_js</type><name>swatch-zoom/lib/modernizr.custom.min.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>swatch-zoom/app.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>swatch-zoom/lib/imagesloaded.js</name></action>
+
+            <action method="addItem" ><type>skin_js</type><name>landing_gallery/js/jquery.isotope.min.js</name><params/></action>
+            <action method="addItem" ><type>skin_js</type><name>landing_gallery/js/jquery.imagesLoaded.min.js</name><params/></action>
+            <action method="addItem" ><type>skin_js</type><name>landing_gallery/js/jquery.transit.min.js</name><params/></action>
+            <action method="addItem" ><type>skin_js</type><name>landing_gallery/js/jquery.easing.js</name><params/></action>
+            <action method="addItem" ><type>skin_js</type><name>landing_gallery/js/waypoints.min.js</name><params/></action>
+            <action method="addItem" ><type>skin_js</type><name>landing_gallery/js/modernizr.custom.min.js</name><params/></action>
+            <action method="addItem" ><type>skin_js</type><name>landing_gallery/js/jquery.magnific-popup.min.js</name><params/></action>
+            <action method="addItem" ><type>skin_js</type><name>landing_gallery/js/jquery.mediaBoxes.js</name><params/></action>
+            <action method="addItem" ><type>skin_js</type><name>landing_gallery/js/bootstrap.min.js</name><params/></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="qsoft_landingimage/gallery" name="landing_gallery" template="qsoft/gallery.phtml"/>
+        </reference>
+    </landing_gallery_index_index>
+</layout>

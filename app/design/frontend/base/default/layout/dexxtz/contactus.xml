@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright [2014] [Dexxtz]
+ *
+ * @package   Dexxtz_Contactus
+ * @author    Dexxtz
+ * @license   http://www.apache.org/licenses/LICENSE-2.0
+ */	
+-->
+<layout>    
+	<contacts_index_index>
+		<reference name="head">
+            <action method="addCss" ifconfig="dexxtz_contactus/general/active"><stylesheet>dexxtz/contactus/css/dexxtz.css</stylesheet></action>
+			<action method="addItem" ifconfig="dexxtz_contactus/general/active"><type>skin_js</type><name>dexxtz/contactus/js/jquery-2.1.1.js</name><params/><if/></action>
+			<action method="addItem" ifconfig="dexxtz_contactus/general/active"><type>skin_js</type><name>dexxtz/contactus/js/dexxtz-mask.js</name><params/><if/></action>
+        </reference>
+		<reference name="contactForm">
+			<action method="setTemplate" ifconfig="dexxtz_contactus/general/active"><template>dexxtz/contactus/contact_form.phtml</template></action>
+        </reference>
+	</contacts_index_index>
+</layout>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+    <global>
+        <modules>
+            <sd5qsoft_helloworld>
+                <version>0.1.0</version>
+            </sd5qsoft_helloworld>
+        </modules>
+        <blocks>
+            <helloworld>
+                <rewrite>
+                    <helloworld>SD5Qsoft_HelloWorld_Block_HelloWorld</helloworld>
+                </rewrite>
+            </helloworld>
+        </blocks>
+
+        <resources>
+            <weblog_setup>
+                <setup>
+                    <module>SD5Qsoft_HelloWorld</module>
+                    <class>SD5Qsoft_HelloWorld_Model_Resource_Setup</class>
+                </setup>
+            </weblog_setup>
+        </resources>
+
+    </global>
+    <frontend>
+        <routers>
+            <helloworld>
+                <use>standard</use>
+                <args>
+                    <module>SD5Qsoft_HelloWorld</module>
+                    <frontName>helloworld</frontName>
+                </args>
+            </helloworld>
+        </routers>
+        <layout>
+            <updates>
+                <helloworld>
+                    <file>sd5qsoft/helloworld.xml</file>
+                </helloworld>
+            </updates>
+        </layout>
+    </frontend>
+</config>

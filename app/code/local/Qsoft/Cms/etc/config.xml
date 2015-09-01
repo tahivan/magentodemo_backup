@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Qsoft_Cms>
+            <version>0.1.0</version>
+        </Qsoft_Cms>
+    </modules>
+    <global>
+        <blocks>
+            <qsoft_cms>
+                <class>Qsoft_Cms_Block</class>
+            </qsoft_cms>
+            <cms>
+                <rewrite>
+                    <block>Qsoft_Cms_Block_Block</block>
+                </rewrite>
+            </cms>
+        </blocks>
+    </global>
+</config>

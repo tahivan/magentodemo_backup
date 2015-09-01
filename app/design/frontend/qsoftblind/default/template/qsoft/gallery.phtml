@@ -1,0 +1,95 @@
+<?php
+$galleryType = $this->getGalleryType();
+$collection = $this->getProductCollection();
+$_helper = $this->helper('catalog/output');
+?>
+
+<div class="page-title">
+    <h1>Gallery</h1>
+</div>
+
+
+<div class="content grid-container">
+
+    <!--  ================== MEDIA BOXES ================== -->
+
+    <div class="filters-container">
+
+        <input type="text" id="search" class="media-boxes-search" placeholder="Search By Title">
+
+        <ul class="media-boxes-filter" id="filter">
+            <li><a class="selected" href="#" data-filter="*">All</a></li>
+            <?php foreach ($galleryType as $item): ?>
+                <li>
+                    <a href="#" data-filter=".<?php echo $this->reFormatText($item['label']); ?>"><?php echo
+                        $item['label'] ?></a>
+                </li>
+            <?php endforeach ?>
+        </ul>
+
+    </div>
+
+    <div id="grid">
+
+        <!-- -------------------------- BOX MARKUP -------------------------- -->
+        <?php foreach ($collection as $_product): ?>
+            <div class="media-box <?php echo $this->getOptionLabel($_product->getGalleryType()) ?>"
+                 data-columns="<?php echo $this->getColumn(); ?>">
+                <div class="media-box-image">
+                    <div data-width="<?php echo $this->getWidth(); ?>" data-height="<?php echo $this->getHeight(); ?>"
+                         data-thumbnail="<?php echo $this->helper('catalog/image')->init($_product,
+                             'image')->resize(460); ?>"></div>
+                    <div data-popup="<?php echo $this->helper('catalog/image')->init($_product,
+                        'image') ?>" title="<?php echo $_product->getName(); ?>"></div>
+
+                    <div class="thumbnail-overlay">
+                        <div class="pin-it-button">
+                            <!--START PIN BUTTON-->
+                            <?php
+                            $_pinlink['url'] = $_product->getProductUrl();
+                            $_pinlink['media'] = $this->helper('catalog/image')->init($_product, 'image')->__toString();
+                            $_pinlink['description'] = $_helper->productAttribute($_product, $_product->getName(), 'name') . " - " . strip_tags($_product->getDescription());
+                            ?>
+                            <a href="http://pinterest.com/pin/create/button/?<?php echo http_build_query($_pinlink) ?>"
+                               class="pin-it-button" count-layout="horizontal"></a>
+                            <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+                            <!--END PIN BUTTON-->
+                        </div>
+                        <i class="fa fa-plus mb-open-popup"></i>
+                        <!--<a href="#"><i class="fa fa-link"></i></a>-->
+                    </div>
+                </div>
+
+                <div class="media-box-content">
+                    <div class="media-box-title"><?php echo $_product->getName(); ?></div>
+                    <!--mfp-content-->
+                    <div class="media-box-text">
+                        <?php echo $this->shortenDesc($_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description')); ?>
+                    </div>
+                    <div class="media-box-more"><a href="<?php echo $_product->getProductUrl() ?>">Read more</a></div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+
+    </div>
+    <!-- #container -->
+
+    <!--  ================== END MEDIA BOXES ================== -->
+
+</div>
+
+</div>
+
+<script>
+    jQuery(document).ready(function ($) {
+        $('#grid').mediaBoxes({
+            filterContainer: '#filter',
+//            search: '#search',
+            boxesToLoadStart: 8,
+            boxesToLoad: 5,
+            horizontalSpaceBetweenBoxes: 20,
+            verticalSpaceBetweenBoxes: 20
+        });
+    });
+</script>

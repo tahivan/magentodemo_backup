@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<config>
+  <tabs>
+    <HELP4CMS_Categorythumbnailimagecarousel translate="label">
+      <label>Category Thumbnail Banner</label>
+      <sort_order>150</sort_order>
+    </HELP4CMS_Categorythumbnailimagecarousel>
+  </tabs>
+  <sections>
+    <categorythumbnailimagecarousel translate="label" module="adminhtml">
+      <label>Setting</label>
+      <tab>HELP4CMS_Categorythumbnailimagecarousel</tab>
+      <sort_order>10</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <general translate="label comment">
+          <label>General</label>
+          <sort_order>1</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <active translate="label comment">
+              <label>Enable/Disable</label>
+              <frontend_type>select</frontend_type>
+              <sort_order>1</sort_order>
+              <source_model>adminhtml/system_config_source_enabledisable</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </active>
+            <enabled translate="label">
+              <label>Enable Jquery</label>
+              <comment>Choose No if jquery already included in your site.</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>2</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <active>1</active>
+              </depends>
+            </enabled>
+            <item translate="label comment">
+              <label>Item</label>
+              <comment>Add here the maximum amount of items displayed at a time with the widest browser width.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>3</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <active>1</active>
+              </depends>
+            </item>
+            <lazyload translate="label comment">
+              <label>lazyLoad</label>
+              <comment>Choose False if you don't Delays loading of images</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>help4cms_categorythumbnailimagecarousel/system_config_source_dropdown_lazyload</source_model>
+              <sort_order>4</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <active>1</active>
+              </depends>
+            </lazyload>
+            <autoPlay translate="label comment">
+              <label>AutoPlay</label>
+              <comment>Choose True if you  want To autoplay Carousel</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>help4cms_categorythumbnailimagecarousel/system_config_source_dropdown_autoplay</source_model>
+              <sort_order>5</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <active>1</active>
+              </depends>
+            </autoPlay>
+            <pauseonhover translate="label comment">
+              <label>Pause On Hover</label>
+              <comment>Choose Disable if you don't want slideshow pause automatically on hover..</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>help4cms_categorythumbnailimagecarousel/system_config_source_dropdown_pauseonhover</source_model>
+              <sort_order>6</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <autoPlay>true</autoPlay>
+              </depends>
+            </pauseonhover>
+            <speed translate="label comment">
+              <label>Speed</label>
+              <comment>Add here the time the transition takes to complete(default:800).</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>7</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <autoPlay>true</autoPlay>
+              </depends>
+            </speed>
+            <controls translate="label comment">
+              <label>Controls</label>
+              <comment>Choose False if you don't want to show Previous/Next Button</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>help4cms_categorythumbnailimagecarousel/system_config_source_dropdown_controls</source_model>
+              <sort_order>9</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <active>1</active>
+              </depends>
+            </controls>
+            <pagination translate="label comment">
+              <label>Pagination</label>
+              <comment>Choose False if you don't want pager</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>help4cms_categorythumbnailimagecarousel/system_config_source_dropdown_pager</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <active>1</active>
+              </depends>
+            </pagination>
+          </fields>
+        </general>
+        <cropgroup translate="label">
+          <label>Image Crop Settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>2</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <crop translate="label comment">
+              <label>Crop Image</label>
+              <comment>Choose True if you don't want crop image</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>help4cms_categorythumbnailimagecarousel/system_config_source_dropdown_crop</source_model>
+              <sort_order>11</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </crop>
+            <aspectratio translate="label comment">
+              <label>AspectRatio</label>
+              <comment>Choose True if you  want crop image in AspectRatio</comment>
+              <frontend_type>select</frontend_type>
+              <source_model>help4cms_categorythumbnailimagecarousel/system_config_source_dropdown_aspectratio</source_model>
+              <sort_order>12</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <crop>true</crop>
+              </depends>
+            </aspectratio>
+            <width translate="label comment">
+              <label>Width</label>
+              <comment>Add here Image Width for Corp Image.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>13</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <crop>true</crop>
+              </depends>
+            </width>
+            <height translate="label comment">
+              <label>Height</label>
+              <comment>Add here Image Height for Corp Image.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>14</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <crop>true</crop>
+              </depends>
+            </height>
+          </fields>
+        </cropgroup>
+      </groups>
+    </categorythumbnailimagecarousel>
+  </sections>
+</config>

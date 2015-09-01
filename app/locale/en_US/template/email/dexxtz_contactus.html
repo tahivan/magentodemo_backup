@@ -1,0 +1,62 @@
+<!--@subject Contact Form@-->
+<!--@vars
+{"var data.name":"Sender Name",
+"var data.email":"Sender Email",
+"var data.telephone":"Sender Telephone",
+"var data.fax":"Sender Fax",
+"var data.comment":"subject",
+"var data.comment":"Comment",
+"var data.comment":"browser",
+"var data.comment":"ip_adress",
+"var data.comment":"geolocation"}
+@-->
+<table width="500" border="0" cellpadding="2" cellspacing="5">
+	<thead>
+		<tr>
+			<th colspan="2" height="50" align="center">Customer Data</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td width="150">Name:</td>
+			<td>{{var data.name}}</td>
+		</tr>
+		<tr>
+			<td>Email:</td>
+			<td>{{var data.email}}</td>
+		</tr>
+		<tr>
+			<td>Telephone:</td>
+			<td>{{var data.telephone}}</td>
+		</tr>
+		<tr>
+			<td>Fax:</td>
+			<td>{{var data.fax}}</td>
+		</tr>
+		<tr>
+			<td>Options:</td>
+			<td><b>{{var data.subject}}</b></td>
+		</tr>
+		<tr>
+			<td>Comment:</td>
+			<td>{{var data.comment}}</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="2" height="50" align="center">Extra Data</th>
+		</tr>
+		<tr>
+			<td>Browser:</td>
+			<td>{{var data.browser}}</td>
+		</tr>
+		<tr>
+			<td>Operating System:</td>
+			<td>{{var data.os}}</td>
+		</tr>
+		<tr>
+			<td>IP Adress:</td>
+			<td>{{var data.ip}}</td>
+		</tr>
+	</tfoot>		
+</table>

@@ -1,0 +1,144 @@
+<?php
+	$helper = Mage::helper('sd5qsoft_imggallery/objecthelper');
+	$galleryCollection = $this -> getAllAttributes();
+	$products = $this -> getAllImagesProduct();
+	// $attrInfor = $this -> getAllAttrInfor();
+	// var_dump($attrInfor);
+	// echo count($products);
+?>
+<div class="page-title">
+	<h1>Gallery</h1>
+</div>
+<div id="sticky-nav">
+	<div class="content">
+
+		<ul class="boxes-filter" id="filter">
+			<li>
+				<a class="selected" href="#" data-filter="*" data-filter-value="*">All</a>
+			</li>
+			<?php foreach ($galleryCollection as $item): ?>
+				<li>
+					<a href="#" data-filter=".<?= $helper -> replaceUnicode($item['label']);?>" data-filter-value="<?= $item['value']?>" id="<?= $helper -> replaceUnicode($item['label']);?>"><?= $item['label']?></a>
+				</li>
+			<?php endforeach ?>
+
+		</ul>
+
+		<div class="dropdown" id="mobilefilter">
+			<button class="btn-mobile dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="width:100%">
+				Select a Room <i class="fa fa-chevron-down"></i>
+			</button>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="width:100%">
+				<li role="presentation">
+					<a role="menuitem" tabindex="-1" href="#" data-filter="*">All Rooms</a>
+				</li>
+				<?php foreach ($galleryCollection as $item): ?>
+					<li role="presentation">
+						<a role="menuitem" tabindex="-1" href="#" data-filter=".<?= $helper -> replaceUnicode($item['label']);?>" id="<?= $helper -> replaceUnicode($item['label']);?>-m"><?= $item['label']?></a>
+					</li>
+				<?php endforeach ?>
+			</ul>
+		</div>
+
+	</div>
+</div>
+
+<div class="gamma-container gamma-loading" id="gamma-container">
+
+	<ul class="gamma-gallery">
+		<?php foreach ($products as $item): ?>
+			<?php 	$imageUrl = "";
+					$galleryData = (string)Mage::helper('catalog/image')->init($item,'image');
+					// foreach($galleryData['images'] as $image){
+					// 	var_dump($imageUrl);
+					// 	break;
+					// }
+
+			?>
+			<li>
+				<div data-alt="img03" data-description="<h3><?= $item->getName();?></h3>" data-max-width="1800" data-max-height="1350">
+					<div data-src="<?= $galleryData?>" data-min-width="1300"></div>
+					<div data-src="<?= $galleryData?>" data-min-width="1000"></div>
+					<div data-src="<?= $galleryData?>" data-min-width="700"></div>
+					<div data-src="<?= $galleryData?>" data-min-width="300"></div>
+					<div data-src="<?= $galleryData?>" data-min-width="200"></div>
+					<div data-src="<?= $galleryData?>" data-min-width="140"></div>
+					<div data-src="<?= $galleryData?>"></div>
+					<noscript>
+						<img src="<?= $galleryData?>" alt="img03"/>
+					</noscript>
+				</div>
+			</li>
+		<?php endforeach ?>
+	</ul>
+
+	<div class="gamma-overlay"></div>
+
+	<div id="loadmore" class="loadmore">Load</div>
+</div>
+<script type="text/javascript">
+
+	jQuery(function() {
+
+		var GammaSettings = {
+				// order is important!
+				viewport : [ {
+					width : 1100,
+					columns : 3
+				}, {
+					width : 900,
+					columns : 2
+				}, {
+					width : 500,
+					columns : 2
+				}, {
+					width : 320,
+					columns : 1
+				}, {
+					width : 0,
+					columns : 1
+				} ]
+		};
+
+		Gamma.init( GammaSettings, fncallback );
+
+
+		// Example how to add more items (just a dummy):
+
+		var page = 0,
+			items = ['<li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="images/xlarge/3.jpg" data-min-width="700"></div><div data-src="images/large/3.jpg" data-min-width="300"></div><div data-src="images/medium/3.jpg" data-min-width="200"></div><div data-src="images/small/3.jpg" data-min-width="140"></div><div data-src="images/xsmall/3.jpg"></div><noscript><img src="images/xsmall/3.jpg" alt="img03"/></noscript></div></li><li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="images/xlarge/3.jpg" data-min-width="700"></div><div data-src="images/large/3.jpg" data-min-width="300"></div><div data-src="images/medium/3.jpg" data-min-width="200"></div><div data-src="images/small/3.jpg" data-min-width="140"></div><div data-src="images/xsmall/3.jpg"></div><noscript><img src="images/xsmall/3.jpg" alt="img03"/></noscript></div></li><li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="images/xlarge/3.jpg" data-min-width="700"></div><div data-src="images/large/3.jpg" data-min-width="300"></div><div data-src="images/medium/3.jpg" data-min-width="200"></div><div data-src="images/small/3.jpg" data-min-width="140"></div><div data-src="images/xsmall/3.jpg"></div><noscript><img src="images/xsmall/3.jpg" alt="img03"/></noscript></div></li><li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="images/xlarge/3.jpg" data-min-width="700"></div><div data-src="images/large/3.jpg" data-min-width="300"></div><div data-src="images/medium/3.jpg" data-min-width="200"></div><div data-src="images/small/3.jpg" data-min-width="140"></div><div data-src="images/xsmall/3.jpg"></div><noscript><img src="images/xsmall/3.jpg" alt="img03"/></noscript></div></li><li><div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350"><div data-src="images/xxxlarge/3.jpg" data-min-width="1300"></div><div data-src="images/xxlarge/3.jpg" data-min-width="1000"></div><div data-src="images/xlarge/3.jpg" data-min-width="700"></div><div data-src="images/large/3.jpg" data-min-width="300"></div><div data-src="images/medium/3.jpg" data-min-width="200"></div><div data-src="images/small/3.jpg" data-min-width="140"></div><div data-src="images/xsmall/3.jpg"></div><noscript><img src="images/xsmall/3.jpg" alt="img03"/></noscript></div></li>']
+
+		function fncallback() {
+
+			jQuery( '#loadmore' ).show().on( 'click', function() {
+
+				++page;
+				var newitems = items[page-1]
+				if( page <= 1 ) {
+
+					Gamma.add( jQuery( newitems ) );
+
+				}
+				if( page === 1 ) {
+
+					jQuery( this ).remove();
+
+				}
+
+			} );
+
+		}
+
+	});
+
+</script>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$('.boxes-filter a').click(function(event) {
+			$('.boxes-filter a').removeClass('selected');
+			$(this).addClass('selected');
+			return false;
+		});
+	});
+</script>

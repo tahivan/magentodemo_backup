@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <SD5Qsoft_ImgGallery>
+            <active>true</active>
+            <codePool>local</codePool>
+        </SD5Qsoft_ImgGallery>
+    </modules>
+</config>

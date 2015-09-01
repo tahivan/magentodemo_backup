@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+Edition : Community 
+Package: HELP4CMS_Categorythumbnailimagecarousel
+Author: Mudit Kumawat 
+Email: muditkumawat19@gmail.com / muditkumawat007@gmail.com
+-->
+<config>
+     <modules>
+          <HELP4CMS_Categorythumbnailimagecarousel>
+              <active>true</active>
+              <codePool>local</codePool>
+        </HELP4CMS_Categorythumbnailimagecarousel>
+    </modules>
+</config>

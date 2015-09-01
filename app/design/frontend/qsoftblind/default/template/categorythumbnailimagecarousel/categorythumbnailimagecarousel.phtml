@@ -1,0 +1,183 @@
+<?php
+/*
+ * Edition : Community 
+ * Package: HELP4CMS_Categorythumbnailimagecarousel
+ * Author: Mudit Kumawat 
+ * Email: muditkumawat19@gmail.com / muditkumawat007@gmail.com
+*/
+
+$item = (Mage::getStoreConfig('categorythumbnailimagecarousel/general/item', Mage::app()->getStore()));
+
+$lazyLoad = (Mage::getStoreConfig('categorythumbnailimagecarousel/general/lazyload', Mage::app()->getStore()));
+
+$autoPlay = (Mage::getStoreConfig('categorythumbnailimagecarousel/general/autoPlay', Mage::app()->getStore()));
+
+$pager = (Mage::getStoreConfig('categorythumbnailimagecarousel/general/pagination', Mage::app()->getStore()));
+
+$controls = (Mage::getStoreConfig('categorythumbnailimagecarousel/general/controls', Mage::app()->getStore()));
+
+$speed = (Mage::getStoreConfig('categorythumbnailimagecarousel/general/speed', Mage::app()->getStore()));
+
+$pauseonhover = (Mage::getStoreConfig('categorythumbnailimagecarousel/general/pauseonhover', Mage::app()->getStore()));
+
+$crop = (Mage::getStoreConfig('categorythumbnailimagecarousel/cropgroup/crop', Mage::app()->getStore()));
+
+$aspectratio = (Mage::getStoreConfig('categorythumbnailimagecarousel/cropgroup/aspectratio', Mage::app()->getStore()));
+
+$width = (Mage::getStoreConfig('categorythumbnailimagecarousel/cropgroup/width', Mage::app()->getStore()));
+
+$height = (Mage::getStoreConfig('categorythumbnailimagecarousel/cropgroup/height', Mage::app()->getStore()));
+
+
+if (Mage::getStoreConfig('categorythumbnailimagecarousel/general/active', Mage::app()->getStore()) == '1') {
+    ?>
+    <script>
+        jQuery(document).ready(function () {
+            jQuery("#category_carousel").owlCarousel({
+                items: <?php echo $item ?>,
+                itemsCustom: false,
+                itemsDesktop: [1199, 3],
+                itemsDesktopSmall: [980, 3],
+                itemsTablet: [768, 2],
+                itemsTabletSmall: false,
+                itemsMobile: [479, 1],
+                singleItem: false,
+                itemsScaleUp: false,
+
+
+                //Basic Speeds
+                slideSpeed: <?php echo $speed; ?>,
+                paginationSpeed: 800,
+                rewindSpeed: 1000,
+
+                //Autoplay
+                autoPlay: <?php echo $autoPlay ;?>,
+                stopOnHover: <?php  echo $pauseonhover ?>,
+
+                // Navigation
+                navigation: <?php  echo $controls ?>,
+                navigationText: [],
+                rewindNav: true,
+                scrollPerPage: true,
+
+                //Pagination
+                pagination: <?php echo $pager; ?>,
+                paginationNumbers: false,
+
+                //Lazy load
+                lazyLoad: <?php echo $lazyLoad; ?>,
+                lazyFollow: true,
+                lazyEffect: "fade",
+
+                // Responsive
+                responsive: true,
+                responsiveRefreshRate: 200,
+                responsiveBaseWidth: window,
+
+                //Auto height
+                autoHeight: false
+
+            });
+        });
+    </script>
+
+    <div class="full-content">
+        <div class="left-content">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('slogan')->toHtml() ?>
+            <div id="category_carousel" class="owl-carousel">
+                <?php
+                $category = Mage::getModel('catalog/category');
+                $tree = $category->getTreeModel();
+                $tree->load();
+
+
+                $exclude_ids = $this->getData(exclude);
+                $exclude = explode(",", $this->getData(exclude));
+                $include = $this->getData("include");
+                if (!empty($exclude_ids)) {
+
+                    $all_category_ids = $tree->getCollection()->getAllIds();
+                    $ids = array_diff($all_category_ids, $exclude);
+                } elseif (!empty($include)) {
+
+                    $ids = explode(",", $include);
+                } else {
+
+                    $ids = $tree->getCollection()->getAllIds();
+                }
+
+                $content = array();
+
+                if ($ids) {
+                    foreach ($ids as $key => $id) {
+                        $cat = Mage::getModel('catalog/category');
+                        $cat->load($id);
+                        $entity_id = $cat->getId();
+                        $name = $cat->getName();
+                        $image_main = $cat->getImageUrl();
+                        $url_key = $cat->getUrlKey();
+                        $url_path = $cat->getUrlPath();
+                        $thumb = $cat->getThumbnail();
+                        $image = Mage::getBaseUrl('media') . 'catalog/category/' . $thumb;
+                        if ($crop == 'true') {
+                            if (!file_exists("./media/catalog/category/resized"))
+                                mkdir("./media/catalog/category/resized", 0777);
+
+                            // get image name
+                            $imageName = substr(strrchr($image, "/"), 1);
+
+                            // resized image path (media/catalog/category/resized/IMAGE_NAME)
+                            $imageResized = Mage::getBaseDir('media') . DS . "catalog" . DS . "category" . DS . "resized" . DS . $imageName;
+
+                            // changing image url into direct path
+                            $dirImg = Mage::getBaseDir() . str_replace("/", DS, strstr($image, '/media'));
+
+                            // if resized image doesn't exist, save the resized image to the resized directory
+                            if (!file_exists($imageResized) && file_exists($dirImg)) :
+                                $imageObj = new Varien_Image($dirImg);
+                                $imageObj->constrainOnly(TRUE);
+                                if ($aspectratio == 'FALSE') {
+                                    $imageObj->keepAspectRatio(FALSE);
+                                } else {
+                                    $imageObj->keepAspectRatio(TRUE);
+                                }
+                                $imageObj->keepFrame(FALSE);
+                                $imageObj->resize($width, $height);
+                                $imageObj->save($imageResized);
+                            endif;
+                            $image = Mage::getBaseUrl('media') . "catalog/category/resized/" . $imageName;
+                        }
+                        if (!empty($thumb)) {
+                            ?>
+                            <div class="item">
+                                <a href="<?php echo $url_path ?>">
+                                    <img class="lazyOwl" data-src="<?php echo $image; ?>" alt="<?php echo $name ?>">
+                                    <!--                        <span>--><?php //echo $name ?><!--</span>-->
+                                </a>
+
+                                <div class="link">
+                                    <a href="<?php echo $url_path ?>"><?php echo $name ?>  <i
+                                            class="fa fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                            <?php
+                            $content[$key]['name'] = $name;
+                            $content[$key]['url'] = $url_path;
+                        }
+
+                    }
+                }
+                ?>
+
+            </div>
+        </div>
+        <div class="right-content">
+            <h3><?php echo $this->__('Shop All Categories'); ?></h3>
+            <?php foreach ($content as $value): ?>
+                <a href="<?php echo $value['url']; ?>"><?php echo $value['name']; ?></a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+<?php
+} ?>

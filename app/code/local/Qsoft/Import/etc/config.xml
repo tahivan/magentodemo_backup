@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<config>
+  <modules>
+    <Qsoft_Import>
+      <version>1.0.0</version>
+    </Qsoft_Import>
+  </modules>
+  <global>
+    <models>
+      <qsoft_import>
+        <class>Qsoft_Import_Model</class>
+      </qsoft_import>
+      <themeblockimport>
+        <class>Qsoft_Import_Model_Adminhtml</class>
+      </themeblockimport>
+    </models>
+    <helpers>
+      <qsoft_import>
+        <class>Qsoft_Import_Helper</class>
+      </qsoft_import>
+    </helpers>
+    <blocks>
+      <qsoft_import>
+        <class>Qsoft_Import_Block</class>
+      </qsoft_import>
+    </blocks>
+  </global>
+  
+  <admin>
+    <routers>
+      <qsoft>
+        <use>admin</use>
+        <args>
+          <module>Qsoft_Import_Adminhtml</module>
+          <frontName>qsoft</frontName>
+        </args>
+      </qsoft>
+    </routers>
+  </admin>
+  <default>
+    <import>
+      <general>
+        <overwirte_cms_block>0</overwirte_cms_block>
+        <overwirte_cms_page>0</overwirte_cms_page>
+      </general>
+    </import>
+  </default>
+</config>

@@ -1,0 +1,128 @@
+<?php
+
+/**
+ * Copyright [2014] [Dexxtz]
+ *
+ * @package   Dexxtz_Contactus
+ * @author    Dexxtz
+ * @license   http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+?>
+
+<?php 
+	$helper = Mage::helper('contactus'); 
+	$storeCode = Mage::app()->getStore()->getLocaleCode();
+?>
+
+<script type="text/javascript">
+	var jQuery = jQuery.noConflict();
+	jQuery(document).ready(function() {
+		jQuery('#contactForm select[name=department]').change(function() {
+			var optionSelected = jQuery('#contactForm select[name=department] option:selected').val();
+			jQuery('#contactForm input[name=subject]').attr('value',optionSelected);
+			
+			if (optionSelected == '<?php echo $this->__('Others') ?>') {
+				jQuery('#contactForm input[name=subject]').attr('value','');
+				jQuery('#contactForm .field.subject').fadeIn('Slow');
+			} else {
+				jQuery('#contactForm .field.subject').css('display','none');
+			}
+		});
+	});	
+</script>
+
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+
+<div class="page-title">
+    <h1><?php echo $helper->__('Contact Us') ?></h1>
+</div>
+
+<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $helper->__('Contact Information') ?></h2>
+        <ul class="form-list">
+            <li class="fields">
+                <div class="field">
+                    <label for="department" class="required"><em>*</em><?php echo $helper->__('What do you need help with?') ?></label>
+                    <select title="<?php echo $helper->__('What do you need help with?') ?>" type="text" class="input-text required-entry" id="department" name="department">
+                        <option value=""><?php echo $helper->__('Choose options...') ?></option>
+                        <?php foreach($helper->getDepartmentsOptions() as $opt) { echo $opt; } ?>
+                        <option value="<?php echo $helper->__('Others') ?>"><?php echo $helper->__('Others') ?></option>
+                    </select>
+                </div>
+                <div class="field subject">
+                    <label for="subject" class="required"><em>*</em><?php echo $helper->__('Subject') ?></label>
+                    <div class="input-box">
+                        <input name="subject" id="subject" title="<?php echo $helper->__('Subject') ?>" class="input-text required-entry" type="text" />
+                    </div>
+                </div>
+            </li>
+            <li class="fields">
+                <div class="field">
+                    <label for="name" class="required"><em>*</em><?php echo $helper->__('Name') ?></label>
+                    <div class="input-box">
+                        <input name="name" id="name" title="<?php echo $helper->__('Name') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="email" class="required"><em>*</em><?php echo $helper->__('Email') ?></label>
+                    <div class="input-box">
+                        <input name="email" id="email" title="<?php echo $helper->__('Email') ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+                    </div>
+                </div>
+            </li>
+
+            <?php if ($helper->getTelephone() == 1 || $helper->getFax() == 1) { ?>
+            <li class="fields">
+            	<?php if ($helper->getTelephone() == 1) { ?>
+            	<div class="field">
+	                <label for="telephone"><?php echo $helper->__('Telephone') ?></label>
+	                <div class="input-box">
+	                    <input name="telephone" id="telephone" <?php echo $helper->addMask(16, $storeCode);?> title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="text" />
+	                </div>
+            	</div>
+            	<?php } ?>
+            	<?php if ($helper->getFax() == 1) { ?>
+            	<div class="field">
+	                <label for="fax"><?php echo $helper->__('Fax') ?></label>
+	                <div class="input-box">
+	                    <input name="fax" id="fax" <?php echo $helper->addMask(17, $storeCode);?> title="<?php echo $helper->__('Fax') ?>" value="" class="input-text" type="text" />
+	                </div>
+            	</div>
+            	<?php } ?>
+            </li>
+            <?php } ?>
+            <li class="wide">
+                <label for="comment" class="required"><em>*</em><?php echo $helper->__('Comment') ?></label>
+                <div class="input-box">
+                    <textarea name="comment" id="comment" title="<?php echo $helper->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                </div>
+            </li>
+        </ul>
+        
+        <?php
+        	$helper = Mage::helper('contactus');
+        	$browser = $helper->getBrowser();
+			$os = $helper->getOS();
+			$ip = $_SERVER['REMOTE_ADDR'];
+			$geolocation = $helper->getGeolocation();
+        ?>
+        
+        <input type="hidden" name="browser" value="<?php echo $helper->__($browser);  ?>" />
+        <input type="hidden" name="os" value="<?php echo $helper->__($os); ?>" />
+        <input type="hidden" name="ip" value="<?php echo $ip; ?>" />
+        <input type="hidden" name="geolocation" value="<?php echo $geolocation; ?>" />
+
+    </div>
+    <div class="buttons-set">
+        <p class="required"><?php echo $helper->__('* Required Fields') ?></p>
+        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+        <button type="submit" title="<?php echo $helper->__('Submit') ?>" class="button"><span><span><?php echo $helper->__('Submit') ?></span></span></button>
+    </div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script>

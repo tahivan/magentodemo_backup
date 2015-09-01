@@ -1,0 +1,221 @@
+<?php
+$minPrice = $this->getMinimumMatrixPrice();
+?>
+
+<!--Sticky Board Goes Here-->
+<div id="sideBar">
+    <div id="sticker">
+        <div class="row items">
+            <span><?php echo $this->__('Price:') ?></span>
+            <span>
+                <em id="matrix_price_result">00</em>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+<div style="display: none" id="loading">
+    <div class="ajaxcartpro_progress"></div>
+</div>
+<input type="hidden" id="currency_symbol" value="<?php echo $this->getCurrentCurrency(); ?>"/>
+<!--End Sticky Board Here-->
+
+
+<!--First Product Options - Measurement Width - Drop-->
+
+<?php $options = $this->getOptions(); ?>
+<div class="accordion" id="section0">
+    <h3 class="manual-accordion">
+        <span></span><i class="fa fa-angle-up"></i>
+        <?php echo $this->__('Measure'); ?>
+    </h3>
+</div>
+<div class="container">
+    <div class="content">
+        <div class="measure_wrapper" id="measure_form" data_url="<?php echo $this->getMeasureAction(); ?>">
+            <div class="fieldset">
+                <ul class="form-list">
+                    <!--UNIT-->
+                    <li class="fields">
+                        <div class="field">
+                            <label for="Unit" class="required">
+                                <em>*</em>
+                                <?php echo Mage::helper('contacts')->__('Unit') ?>
+                            </label>
+
+                            <div class="input-box">
+                                <div class="unit">
+                                    <input onclick="calculate.addMeasureOdd(0)" checked="true" id="unit_cm"
+                                           class="radio"
+                                           type="radio" value="0"
+                                           title="<?php echo Mage::helper('qsoft_pricematrix')->__('Cm') ?>"
+                                           name="unit">
+                                    <span><?php echo Mage::helper('contacts')->__('Cm') ?></span>
+                                </div>
+                                <div>
+                                    <input onclick="calculate.addMeasureOdd(1)" id="unit_inch" class="radio"
+                                           type="radio"
+                                           value="1" title="<?php echo Mage::helper('qsoft_pricematrix')->__('Inch') ?>"
+                                           name="unit">
+                                    <input type="hidden" id="measure_unit"/>
+                                    <span><?php echo Mage::helper('contacts')->__('Inch') ?></span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                    <!--END UNIT-->
+
+                    <li class="fields">
+                        <!--DROP-->
+                        <div class="field">
+                            <label for="drop" class="required">
+                                <em>*</em>
+                                <?php echo Mage::helper('contacts')->__('Drop') ?>
+                            </label>
+
+                            <div class="input-box">
+                                <input name="drop" id="measure_drop"
+                                       title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('qsoft_pricematrix')->__('Drop')) ?>"
+                                       value="" onkeyup="calculate.checkInteger(this)"
+                                       onkeydown="calculate.checkInteger(this)"
+                                       onchange="calculate.calculateMeasure(this)"
+                                       targetElm="measure-drop"
+                                       class="input-text required-entry" type="text"/>
+                                <select targetElm="measure-dropodd" id="drop_odd" name="drop_odd"
+                                        onchange="calculate.calculateMeasure(this)">
+                                    <option value="0">0</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--END DROP-->
+
+                        <!--WIDTH-->
+                        <div class="field">
+                            <label for="width" class="required">
+                                <em>*</em>
+                                <?php echo Mage::helper('qsoft_pricematrix')->__('Width') ?></label>
+
+                            <div class="input-box">
+                                <input name="width" id="measure_width"
+                                       title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('qsoft_pricematrix')->__('Width')) ?>"
+                                       value="" onkeyup="calculate.checkInteger(this)"
+                                       onkeydown="calculate.checkInteger(this)"
+                                       targetElm="measure-width"
+                                       onchange="calculate.calculateMeasure(this)"
+                                       class="input-text required-entry" type="text"/>
+                                <select targetElm="measure-widthodd" id="width_odd" name="width_odd"
+                                        onchange="calculate.calculateMeasure(this)">
+                                    <option value="0">0</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--END WIDTH-->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End First Product Options - Measurement Width - Drop-->
+
+<!--Other Product Options-->
+
+<?php $i = 1; ?>
+<?php foreach ($options as $_option): ?>
+    <?php if (Mage::helper('qsoft_pricematrix')->useAsChooseImg($_option->getType())): ?>
+        <div class="accordion" id="section<?php echo $i; ?>">
+            <h3 class="manual-accordion">
+                <span></span><i class="fa fa-angle-down"></i>
+                <?php echo $_option->getTitle(); ?>
+            </h3>
+        </div>
+        <div class="container available_options">
+            <div class="content">
+                <?php $count = 1; ?>
+                <?php foreach ($_option->getValues() as $value): ?>
+                    <?php $count++; ?>
+                    <div id="<?php echo 'options_' . $_option->getId() . '_' . $count; ?>" class="colorSwatchWrap"
+                         style="margin: 8px;">
+                        <div class="<?php echo 'colorSwatchBody' . ' options_' . $_option->getId() . '_' . $count; ?>">
+                            <img data_id="<?php echo 'options_' . $_option->getId() . '_' . $count; ?>"
+                                 src="<?php echo $this->getOptionImageUrl($value->getId(), $title); ?>" width="100px"
+                                 option_type="<?php echo $_option->getType(); ?>"
+                                 option_id="<?php echo $_option->getId(); ?>"
+                                 option_type_id="<?php echo $value->getOptionTypeId(); ?>"
+                                 height="100px" onclick="calculate.indirectChooseOption(event);"
+                                 style="border-radius: 4px;"/>
+                        </div>
+                        <div class="colorSwatchHeader">
+                            <span class="label"><?php echo $this->__($title); ?></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php $i++; ?>
+    <?php endif; ?>
+<?php endforeach; ?>
+
+<!--End Other Product Options-->
+
+<script type="text/javascript" language="javascript">
+    var calculate = new calculatePrice('measure_form');
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('.accordion').accordion({
+            defaultOpen: 'section0',
+            speed: 'fast'
+        });
+    });
+
+    jQuery(".accordion").click(function ($) {
+
+        if (jQuery(this).next("div").is(":visible")) {
+            jQuery(this).find('i').toggleClass('fa-angle-up fa-angle-down');
+        } else {
+            jQuery(".manual-accordion i").attr("class", "fa fa-angle-down");
+            jQuery(this).find('i').toggleClass('fa-angle-up fa-angle-down')
+        }
+    });
+</script>
+
+<!--Sticky Board Script-->
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        var s = $("#sticker");
+        var pos = s.position();
+        var stickermax = $(document).outerHeight() - $(".footer-container").outerHeight() - s.outerHeight() - 10; //40 value is the
+        // total of the top and bottom margin
+        s.hide();
+        $(window).scroll(function () {
+            var windowpos = $(window).scrollTop();
+            //console.log("Distance from top:" + pos.top + " Scroll position: " + windowpos);
+            if ((windowpos + 300) >= pos.top && windowpos < stickermax) {
+                s.attr("style", ""); //kill absolute positioning
+                s.addClass('popup');
+                s.show();
+            } else if (windowpos >= stickermax) {
+                s.removeClass(); //un-stick
+                s.css({position: "absolute", top: stickermax + "px"}); //set sticker right above the footer
+                s.hide();
+
+            } else {
+                s.removeClass(); //top of page
+                s.hide();
+            }
+        });
+        var minimumPrice = "<?php echo $minPrice; ?>";
+        if (minimumPrice !== '') {
+            $('.price-box').find('.price').text(minimumPrice);
+            $('#matrix_price_result').text(minimumPrice);
+        }
+    });
+</script>
+
+
+
+

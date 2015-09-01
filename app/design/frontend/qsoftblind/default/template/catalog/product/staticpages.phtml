@@ -1,0 +1,99 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: tuyennn
+ * Date: 8/26/2015
+ * Time: 2:27 PM
+ */
+?>
+<div class="full-content">
+    <div class="section-line">
+        <span class="line"><h2>Why Shop at our Store?</h2></span>
+    </div>
+
+    <div class="shopbox">
+        <img src="/media/icons/shop-worryfree.gif">
+        <a href="/control/infopage?page=sat_guar.html"><h4>Worry-Free Shopping</h4></a>
+
+        <p>Between our measuring insurance, 30-Day Price Guarantee and Satisfaction Guarantee, we've got you covered.
+            <br></p>
+        <a href="/control/infopage?page=sat_guar.html">Learn More</a>
+    </div>
+    <div class="shopbox">
+        <img src="/media/icons/shop-norobot.gif">
+        <a href="/control/infopage?page=contact-us.html"><h4>No Robots</h4></a>
+
+        <p>Want to talk to a real person about your window? We've got hundreds of design consultants ready to help by
+            phone and live chat. <br></p>
+        <a href="/control/infopage?page=contact-us.html">Talk to Us</a>
+    </div>
+    <div class="shopbox">
+        <img src="/media/icons/shop-value.gif">
+        <a href="/control/infopage?page=monthly_savings.html"><h4>Unbeatable Value</h4></a>
+
+        <p>It's hard to put a pricetag on easy. Fortunately, you'll still get lower prices than in brick-and-mortar
+            stores, especially on Blinds.com brand products! <br></p>
+        <a href="/control/infopage?page=monthly_savings.html">View Current Sales</a>
+    </div>
+    <div class="shopbox">
+        <img src="/media/icons/shop-sample.gif">
+        <a href="/control/orderSample?cid=free_sample.htm"><h4>Free Samples</h4></a>
+
+        <p>Nervous about buying online? Get up to 10 samples, absolutely free. Postage is on us. <br></p>
+        <a href="/control/orderSample?cid=free_sample.htm">Browse Samples</a>
+    </div>
+    <div class="shopbox">
+        <img src="/media/icons/shop-ship.gif">
+        <a href="/control/infopage?page=policies-help.html#shipping"><h4>Free Shipping</h4></a>
+
+        <p>If you live in the 48 contiguous United States, nearly every product you order will ship at no cost to
+            you.<br></p>
+        <a href="/control/infopage?page=policies-help.html#shipping">Learn More</a>
+    </div>
+    <div class="shopbox">
+        <img src="/media/icons/shop-tools.gif">
+        <a href="http://videos.blinds.com"><h4>Online Tools</h4></a>
+
+        <p>Want to become an expert while you order? We've got measuring guides, videos and online tools galore.<br></p>
+        <a href="http://videos.blinds.com">Learn More</a>
+    </div>
+</div>
+
+<script>
+    // Script to equalize all div height
+//    jQuery(document).ready(function(){
+//
+//        jQuery('.full-content').each(function(){
+//            // Initial the highest box
+//            var highestBox = 0;
+//            jQuery('.shopbox', this).each(function(){
+//                // Set all div height to the highest box
+//                if(jQuery(this).height() > highestBox)
+//                    highestBox = jQuery(this).height();
+//            });
+//
+//            jQuery('.shopbox',this).height(highestBox);
+//
+//
+//        });
+//
+//    });
+
+    (function($){
+        // your code
+        $('.full-content').each(function(){
+            // Initial the highest box
+            var highestBox = 0;
+            $('.shopbox', this).each(function(){
+                // Set all div height to the highest box
+                if($(this).height() > highestBox)
+                    highestBox = $(this).height();
+            });
+
+            $('.shopbox',this).height(highestBox);
+
+
+        });
+    })(jQuery);
+
+</script>

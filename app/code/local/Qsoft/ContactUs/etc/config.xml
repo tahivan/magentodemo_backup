@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Qsoft_ContactUs>
+            <version>0.1.0</version>
+        </Qsoft_ContactUs>
+    </modules>
+    <global>
+        <models>
+            <qsoft_contactus>
+                <class>Qsoft_ContactUs_Model</class>
+                <resourceModel>qsoft_contactus_resource</resourceModel>
+            </qsoft_contactus>
+            <qsoft_contactus_resource>
+                <class>Qsoft_ContactUs_Model_Resource</class>
+            </qsoft_contactus_resource>
+        </models>
+        <blocks>
+            <qsoft_contactus>
+                <class>Qsoft_ContactUs_Block</class>
+            </qsoft_contactus>
+        </blocks>
+        <helpers>
+            <qsoft_contactus>
+                <class>Qsoft_ContactUs_Helper</class>
+            </qsoft_contactus>
+        </helpers>
+    </global>
+</config>

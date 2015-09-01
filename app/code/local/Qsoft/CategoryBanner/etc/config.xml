@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Qsoft_CategoryBanner>
+            <version>0.1.0</version>
+        </Qsoft_CategoryBanner>
+    </modules>
+    <global>
+        <models>
+            <qsoft_categorybanner>
+                <class>Qsoft_CategoryBanner_Model</class>
+                <resourceModel>qsoft_categorybanner_resource</resourceModel>
+            </qsoft_categorybanner>
+            <qsoft_categorybanner_resource>
+                <class>Qsoft_CategoryBanner_Model_Resource</class>
+            </qsoft_categorybanner_resource>
+        </models>
+        <blocks>
+            <qsoft_categorybanner>
+                <class>Qsoft_CategoryBanner_Block</class>
+            </qsoft_categorybanner>
+        </blocks>
+        <helpers>
+            <qsoft_categorybanner>
+                <class>Qsoft_CategoryBanner_Helper</class>
+            </qsoft_categorybanner>
+        </helpers>
+        <resources>
+            <qsoft_categorybanner_setup>
+                <setup>
+                    <module>Qsoft_CategoryBanner</module>
+                </setup>
+            </qsoft_categorybanner_setup>
+        </resources>
+    </global>
+</config>

@@ -1,0 +1,45 @@
+/* == LETS MODIFY SOME COLORS AND STYLE FOR THE DEMO == */
+
+/* *********** STYLE OF GRID 1 *********** */
+#search {
+    float: right;
+}
+.filters-container .media-boxes-filter li {
+    padding-bottom: 10px;
+}
+
+.pin-it-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+
+
+/* *********** STYLE OF GRID 2 *********** */
+#filter2 li a.selected,
+#grid2 .thumbnail-overlay .fa {
+    background: #28ac86;
+}
+
+.media-boxes-drop-down-menu > li > a.selected,
+#grid2 .media-box-date,
+#grid2 .media-box-author {
+    color: #28ac86;
+}
+
+.media-boxes-drop-down {
+    float: right;
+    margin-left: 5px;
+}
+
+/* *********** STYLE OF GRID 3 *********** */
+#sort2 .media-boxes-drop-down-menu > li > a.selected,
+#filter3 .media-boxes-drop-down-menu > li > a.selected,
+#grid3 .media-box-date {
+    color: #09b0dd;
+}
+
+#grid3 .thumbnail-overlay .fa {
+    background: #09b0dd;
+}

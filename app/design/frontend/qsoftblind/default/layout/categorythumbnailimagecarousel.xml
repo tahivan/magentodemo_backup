@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!--
+Edition : Community 
+Package: HELP4CMS_Categorythumbnailimagecarousel
+Author: Mudit Kumawat 
+Email: muditkumawat19@gmail.com / muditkumawat007@gmail.com
+-->
+<!-- Root node for Magento layout configuration -->
+<layout version="0.1.0">
+  <!--Page handle -->
+  <default>
+    <reference name="head">
+      <action method="addItem"  ifconfig="categorythumbnailimagecarousel/general/enabled">
+        <type>skin_js</type>
+        <name>categorythumbnailimagecarousel/js/jquery-1.11.1.min.js</name>
+        <params/>
+      </action>
+      <!--<action method="addItem" ifconfig="categorythumbnailimagecarousel/general/active">-->
+        <!--<type>skin_js</type>-->
+        <!--<name>categorythumbnailimagecarousel/js/owl.carousel.js</name>-->
+        <!--<params/>-->
+      <!--</action>-->
+      <!--<action method="addItem" ifconfig="categorythumbnailimagecarousel/general/active">-->
+        <!--<type>skin_js</type>-->
+        <!--<name>categorythumbnailimagecarousel/js/default.js</name>-->
+        <!--<params/>-->
+      <!--</action>-->
+      <!--<action method="addItem" ifconfig="categorythumbnailimagecarousel/general/active">-->
+        <!--<type>skin_css</type>-->
+        <!--<script>categorythumbnailimagecarousel/css/categorythumbnailimagecarousel.css</script>-->
+      <!--</action>-->
+    </reference>
+  </default>
+  <categorythumbnailimagecarousel_index_index>
+    <!-- reference tag specifies the block where we a going to add child block -->
+    
+    <reference name="root">
+      <action method="setTemplate">
+        <template>page/1column.phtml</template>
+      </action>
+    </reference>
+    <reference name="content">
+      <!-- Our page content block -->
+      <block type="core/template" name="categorythumbnailimagecarousel" template="categorythumbnailimagecarousel/categorythumbnailimagecarousel.phtml"></block>
+    </reference>
+  </categorythumbnailimagecarousel_index_index>
+</layout>

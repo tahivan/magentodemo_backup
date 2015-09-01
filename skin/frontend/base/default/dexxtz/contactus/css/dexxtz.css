@@ -1,0 +1,10 @@
+
+/**
+ * Copyright [2014] [Dexxtz]
+ *
+ * @package   Dexxtz_Contactus
+ * @author    Dexxtz
+ * @license   http://www.apache.org/licenses/LICENSE-2.0
+ */	
+
+#contactForm .field.subject { display: none; }
